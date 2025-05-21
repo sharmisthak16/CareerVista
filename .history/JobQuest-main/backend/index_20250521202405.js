@@ -4,7 +4,7 @@ const cors = require('cors');
 const { connectDB } = require('./db/db');
 const userRoute = require('./routes/userRoutes')
 const uploadRoute = require('./routes/uploadRoute');
-
+const authMiddleware = require('./middleware/authMiddleware');
 const app = express();
 
 app.get('/', (req, res) => {
@@ -42,7 +42,7 @@ const PORT = process.env.PORT;
 connectDB();
 
 app.use('/api', userRoute)
-app.use('/api/service',  uploadRoute)
+app.use('/api/service', authMiddleware, uploadRoute)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)

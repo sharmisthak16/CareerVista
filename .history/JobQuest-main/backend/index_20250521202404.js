@@ -42,7 +42,7 @@ const PORT = process.env.PORT;
 connectDB();
 
 app.use('/api', userRoute)
-app.use('/api/service',  uploadRoute)
+app.use('/api/service', authMiddleware, uploadRoute)
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
