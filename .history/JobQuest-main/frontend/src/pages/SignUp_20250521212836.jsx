@@ -62,7 +62,6 @@ import { useState } from "react";
 
 const Signup = ({ onSubmit, switchToLogin }) => {
   const baseUrl = import.meta.env.VITE_BACKEND_URL;
-  console.log("Backend URL:", baseUrl);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -76,14 +75,7 @@ const Signup = ({ onSubmit, switchToLogin }) => {
 
     const formData = { username, email, password, phone, address, securityAnswer };
 
-    try {
-      const response = await fetch(`${baseUrl}/api/onboard`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+    
       const data = await response.json();
 
       if (!response.ok) {
