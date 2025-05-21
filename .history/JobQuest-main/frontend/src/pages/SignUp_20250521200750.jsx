@@ -13,37 +13,6 @@ const Signup = ({ onSubmit, switchToLogin }) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-  
-    const formData = { username, email, password, phone, address, securityAnswer };
-    
-    // Log the URL being used (for debugging)
-    const apiUrl = `${import.meta.env.VITE_BACKEND_URL}/api/user-creation`;
-    console.log("Submitting to:", apiUrl);
-  
-    try {
-      const response = await axios.post(apiUrl, formData);
-      const data = response.data;
-      onSubmit(data);
-    } catch (err) {
-      console.error("Registration error details:", {
-        message: err.message,
-        response: err.response?.data,
-        status: err.response?.status,
-        config: err.config
-      });
-      
-      const errorMessage = err.response?.data?.error || "Something went wrong. Please try again.";
-      setError(errorMessage);
-      setTimeout(() => setError(""), 5000);
-    } finally {
-      setLoading(false);
-    }
-  };
-  
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
