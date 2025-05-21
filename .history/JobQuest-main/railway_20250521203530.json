@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "name": "backend",
+        "path": "server",
+        "installCommand": "npm install",
+        "buildCommand": "",
+        "startCommand": "node index.js"
+      },
+      {
+        "name": "frontend",
+        "path": "client",
+        "installCommand": "npm install",
+        "buildCommand": "npm run build",
+        "startCommand": "serve -s build"
+      }
+    ]
+  }
+  
